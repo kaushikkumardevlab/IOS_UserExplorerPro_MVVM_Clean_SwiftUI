@@ -21,3 +21,22 @@ struct User: Identifiable, Codable, Hashable {
     let streetAddress: String
     let age: Int
 }
+
+extension User {
+    static let previewUser = User(
+        id: "preview-user-1",
+        name: "Sophia Carter",
+        email: "sophia.carter@example.com",
+        imageURL: "https://randomuser.me/api/portraits/women/44.jpg",
+        thumbnailURL: "https://randomuser.me/api/portraits/thumb/women/44.jpg",
+        gender: "Female",
+        username: "sophiacarter",
+        phone: "(202) 555-0148",
+        cell: "(202) 555-0199",
+        city: "San Francisco",
+        state: "California",
+        country: "United States",
+        streetAddress: "240 Market Street",
+        age: 29
+    )
+}

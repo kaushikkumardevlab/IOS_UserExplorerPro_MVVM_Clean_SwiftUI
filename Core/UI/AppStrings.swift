@@ -1,0 +1,30 @@
+enum AppStrings {
+    static let usersNavigationTitle = "Users"
+    static let userExplorerTitle = "User Explorer"
+    static let userExplorerSubtitle = "Browse profiles, preview locations, and open detailed contact information."
+    static let loadedUsersSuffix = "loaded"
+    static let loadingMoreUsers = "Loading more users..."
+
+    static let profileSectionTitle = "Profile"
+    static let contactSectionTitle = "Contact"
+    static let locationSectionTitle = "Location"
+    static let detailSectionTitle = "Details"
+
+    static let usernameLabel = "Username"
+    static let genderLabel = "Gender"
+    static let ageLabel = "Age"
+    static let ageYearsSuffix = "years"
+    static let emailLabel = "Email"
+    static let phoneLabel = "Phone"
+    static let cellLabel = "Cell"
+    static let streetLabel = "Street"
+    static let cityLabel = "City"
+    static let stateLabel = "State"
+    static let countryLabel = "Country"
+    static let yearsShortSuffix = "yrs"
+
+    static let profileActionTitle = "Profile"
+    static let contactActionTitle = "Contact"
+    static let locationActionTitle = "Location"
+    static let detailActionTitle = "Details"
+}

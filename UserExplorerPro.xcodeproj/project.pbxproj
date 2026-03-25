@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1513AB742F72504E00844E7C /* GetUsersUseCase.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2500F2F6C36BE00923B72 /* GetUsersUseCase.swift */; };
+		1513AB752F72504E00844E7C /* APIService.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2500C2F6C359600923B72 /* APIService.swift */; };
+		1513AB762F72504E00844E7C /* AppDI.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A250112F6C37B100923B72 /* AppDI.swift */; };
+		1513AB772F72504E00844E7C /* RepositoryImpl.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2500E2F6C35F500923B72 /* RepositoryImpl.swift */; };
+		1513AB782F72504E00844E7C /* UserDTO.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2500B2F6C2D4F00923B72 /* UserDTO.swift */; };
+		1513AB792F72504E00844E7C /* User.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2500A2F6C297B00923B72 /* User.swift */; };
+		1513AB7A2F72504E00844E7C /* UserRepository.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2500D2F6C35D400923B72 /* UserRepository.swift */; };
+		1513AB7B2F72504E00844E7C /* UserViewModel.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A250102F6C373C00923B72 /* UserViewModel.swift */; };
+		1513AB7C2F72504E00844E7C /* UserListView.swift in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A250122F6C37FD00923B72 /* UserListView.swift */; };
+		15520AD82F73AEFD0037F1AC /* UserInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15520AD72F73AEFD0037F1AC /* UserInfoRow.swift */; };
+		15520ADA2F73AEFD0037F1AC /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15520AD92F73AEFD0037F1AC /* UserProfileView.swift */; };
+		15520ADC2F73AEFE0037F1AC /* UserContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15520ADB2F73AEFE0037F1AC /* UserContactView.swift */; };
+		15520ADE2F73AEFE0037F1AC /* UserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15520ADD2F73AEFE0037F1AC /* UserLocationView.swift */; };
+		155BFC5B2F72B40E006534B5 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BFC5A2F72B40E006534B5 /* AppColors.swift */; };
+		155BFC5D2F72B4C9006534B5 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BFC5C2F72B4C9006534B5 /* AppStrings.swift */; };
 		15A260012F6C500000923B72 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A2500C2F6C359600923B72 /* APIService.swift */; };
 		15A260022F6C500000923B72 /* AppDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A250112F6C37B100923B72 /* AppDI.swift */; };
 		15A260032F6C500000923B72 /* RepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A2500E2F6C35F500923B72 /* RepositoryImpl.swift */; };
@@ -20,6 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15520AD72F73AEFD0037F1AC /* UserInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRow.swift; sourceTree = "<group>"; };
+		15520AD92F73AEFD0037F1AC /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		15520ADB2F73AEFE0037F1AC /* UserContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactView.swift; sourceTree = "<group>"; };
+		15520ADD2F73AEFE0037F1AC /* UserLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationView.swift; sourceTree = "<group>"; };
+		155BFC5A2F72B40E006534B5 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		155BFC5C2F72B4C9006534B5 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		15A24FE62F6C23EE00923B72 /* UserExplorerPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UserExplorerPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A2500A2F6C297B00923B72 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		15A2500B2F6C2D4F00923B72 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
@@ -46,21 +67,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			15A260072F6C500000923B72 /* GetUsersUseCase.swift in Sources */,
-			15A260012F6C500000923B72 /* APIService.swift in Sources */,
-			15A260022F6C500000923B72 /* AppDI.swift in Sources */,
-			15A260032F6C500000923B72 /* RepositoryImpl.swift in Sources */,
-			15A260042F6C500000923B72 /* UserDTO.swift in Sources */,
-			15A260052F6C500000923B72 /* User.swift in Sources */,
-			15A260062F6C500000923B72 /* UserRepository.swift in Sources */,
-			15A260082F6C500000923B72 /* UserViewModel.swift in Sources */,
-			15A260092F6C500000923B72 /* UserListView.swift in Sources */,
+				1513AB742F72504E00844E7C /* GetUsersUseCase.swift in Frameworks */,
+				1513AB752F72504E00844E7C /* APIService.swift in Frameworks */,
+				1513AB762F72504E00844E7C /* AppDI.swift in Frameworks */,
+				1513AB772F72504E00844E7C /* RepositoryImpl.swift in Frameworks */,
+				1513AB782F72504E00844E7C /* UserDTO.swift in Frameworks */,
+				1513AB792F72504E00844E7C /* User.swift in Frameworks */,
+				1513AB7A2F72504E00844E7C /* UserRepository.swift in Frameworks */,
+				1513AB7B2F72504E00844E7C /* UserViewModel.swift in Frameworks */,
+				1513AB7C2F72504E00844E7C /* UserListView.swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		155BFC592F72B405006534B5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				155BFC5A2F72B40E006534B5 /* AppColors.swift */,
+				155BFC5C2F72B4C9006534B5 /* AppStrings.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		15A24FDD2F6C23EE00923B72 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +118,7 @@
 				15A250022F6C28CD00923B72 /* Utils */,
 				15A250012F6C28C200923B72 /* DI */,
 				15A250002F6C28B700923B72 /* Network */,
+				155BFC592F72B405006534B5 /* UI */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -203,6 +234,10 @@
 			children = (
 				15A2600B2F6C500000923B72 /* UserDetailView.swift */,
 				15A250122F6C37FD00923B72 /* UserListView.swift */,
+				15520AD72F73AEFD0037F1AC /* UserInfoRow.swift */,
+				15520AD92F73AEFD0037F1AC /* UserProfileView.swift */,
+				15520ADB2F73AEFE0037F1AC /* UserContactView.swift */,
+				15520ADD2F73AEFE0037F1AC /* UserLocationView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -284,13 +319,19 @@
 				15A260072F6C500000923B72 /* GetUsersUseCase.swift in Sources */,
 				15A260012F6C500000923B72 /* APIService.swift in Sources */,
 				15A260022F6C500000923B72 /* AppDI.swift in Sources */,
+				155BFC5D2F72B4C9006534B5 /* AppStrings.swift in Sources */,
 				15A260032F6C500000923B72 /* RepositoryImpl.swift in Sources */,
 				15A260042F6C500000923B72 /* UserDTO.swift in Sources */,
 				15A260052F6C500000923B72 /* User.swift in Sources */,
 				15A260062F6C500000923B72 /* UserRepository.swift in Sources */,
 				15A2600A2F6C500000923B72 /* UserDetailView.swift in Sources */,
+				15520ADA2F73AEFD0037F1AC /* UserProfileView.swift in Sources */,
+				15520ADC2F73AEFE0037F1AC /* UserContactView.swift in Sources */,
+				15520ADE2F73AEFE0037F1AC /* UserLocationView.swift in Sources */,
+				155BFC5B2F72B40E006534B5 /* AppColors.swift in Sources */,
 				15A260082F6C500000923B72 /* UserViewModel.swift in Sources */,
 				15A260092F6C500000923B72 /* UserListView.swift in Sources */,
+				15520AD82F73AEFD0037F1AC /* UserInfoRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C3L59S4JKH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -454,6 +496,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C3L59S4JKH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

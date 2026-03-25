@@ -16,28 +16,28 @@ struct UserDetailView: View {
             VStack(alignment: .leading, spacing: 24) {
                 headerSection
                 infoSection(
-                    title: "Profile",
+                    title: AppStrings.profileSectionTitle,
                     rows: [
-                        ("Username", user.username),
-                        ("Gender", user.gender),
-                        ("Age", "\(user.age) years")
+                        (AppStrings.usernameLabel, user.username),
+                        (AppStrings.genderLabel, user.gender),
+                        (AppStrings.ageLabel, "\(user.age) \(AppStrings.ageYearsSuffix)")
                     ]
                 )
                 infoSection(
-                    title: "Contact",
+                    title: AppStrings.contactSectionTitle,
                     rows: [
-                        ("Email", user.email),
-                        ("Phone", user.phone),
-                        ("Cell", user.cell)
+                        (AppStrings.emailLabel, user.email),
+                        (AppStrings.phoneLabel, user.phone),
+                        (AppStrings.cellLabel, user.cell)
                     ]
                 )
                 infoSection(
-                    title: "Location",
+                    title: AppStrings.locationSectionTitle,
                     rows: [
-                        ("Street", user.streetAddress),
-                        ("City", user.city),
-                        ("State", user.state),
-                        ("Country", user.country)
+                        (AppStrings.streetLabel, user.streetAddress),
+                        (AppStrings.cityLabel, user.city),
+                        (AppStrings.stateLabel, user.state),
+                        (AppStrings.countryLabel, user.country)
                     ]
                 )
             }
@@ -46,7 +46,7 @@ struct UserDetailView: View {
         .background(
             LinearGradient(
                 colors: [
-                    Color(red: 0.96, green: 0.98, blue: 1.0),
+                    AppColors.screenBackgroundTop,
                     Color.white
                 ],
                 startPoint: .top,
@@ -61,8 +61,8 @@ struct UserDetailView: View {
         ZStack(alignment: .bottomLeading) {
             LinearGradient(
                 colors: [
-                    Color(red: 0.19, green: 0.40, blue: 0.88),
-                    Color(red: 0.14, green: 0.72, blue: 0.78)
+                    AppColors.detailGradientStart,
+                    AppColors.detailGradientEnd
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -148,23 +148,6 @@ private struct DetailRow: View {
 
 #Preview {
     NavigationStack {
-        UserDetailView(
-            user: User(
-                id: "preview-user-1",
-                name: "Sophia Carter",
-                email: "sophia.carter@example.com",
-                imageURL: "https://randomuser.me/api/portraits/women/44.jpg",
-                thumbnailURL: "https://randomuser.me/api/portraits/thumb/women/44.jpg",
-                gender: "Female",
-                username: "sophiacarter",
-                phone: "(202) 555-0148",
-                cell: "(202) 555-0199",
-                city: "San Francisco",
-                state: "California",
-                country: "United States",
-                streetAddress: "240 Market Street",
-                age: 29
-            )
-        )
+        UserDetailView(user: .previewUser)
     }
 }

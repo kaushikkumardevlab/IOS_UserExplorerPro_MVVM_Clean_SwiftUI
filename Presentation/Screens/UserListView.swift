@@ -2,10 +2,17 @@
 //  UserListView.swift
 //  UserExplorerPro
 //
-//  Created by Kaushikkumar on 19/03/26.
+//  Created by Kaushikkumar
 //
 
 import SwiftUI
+
+private enum UserRoute: Hashable {
+    case detail(User)
+    case profile(User)
+    case contact(User)
+    case location(User)
+}
 
 struct UserListView: View {
 
@@ -16,9 +23,9 @@ struct UserListView: View {
             ZStack {
                 LinearGradient(
                     colors: [
-                        Color(red: 0.96, green: 0.98, blue: 1.0),
-                        Color(red: 0.91, green: 0.96, blue: 0.98),
-                        Color.white
+                        AppColors.screenBackgroundTop,
+                        AppColors.screenBackgroundMiddle,
+                        Color.brown
                     ],
                     startPoint: .top,
                     endPoint: .bottom
@@ -27,13 +34,10 @@ struct UserListView: View {
 
                 ScrollView {
                     LazyVStack(spacing: 20, pinnedViews: [.sectionHeaders]) {
-                        Section {
+                        Section(header:stickyHeader) {
                             LazyVStack(spacing: 16) {
                             ForEach(vm.users) { user in
-                                NavigationLink(value: user) {
-                                    UserCardView(user: user)
-                                }
-                                .buttonStyle(.plain)
+                                UserCardView(user: user)
                                 .onAppear {
                                     if user.id == vm.users.last?.id {
                                         vm.loadUsers()
@@ -45,8 +49,6 @@ struct UserListView: View {
                                 loadingCard
                             }
                             }
-                        } header: {
-                            stickyHeader
                         }
                     }
                     .padding(.horizontal, 20)
@@ -54,10 +56,19 @@ struct UserListView: View {
                     .padding(.bottom, 24)
                 }
             }
-            .navigationTitle("Users")
+            .navigationTitle(AppStrings.usersNavigationTitle)
             .navigationBarTitleDisplayMode(.large)
-            .navigationDestination(for: User.self) { user in
-                UserDetailView(user: user)
+            .navigationDestination(for: UserRoute.self) { route in
+                switch route {
+                case .detail(let user):
+                    UserDetailView(user: user)
+                case .profile(let user):
+                    UserProfileView(user: user)
+                case .contact(let user):
+                    UserContactView(user: user)
+                case .location(let user):
+                    UserLocationView(user: user)
+                }
             }
         }
         .onAppear {
@@ -73,8 +84,8 @@ struct UserListView: View {
             .background(
                 LinearGradient(
                     colors: [
-                        Color(red: 0.96, green: 0.98, blue: 1.0),
-                        Color(red: 0.91, green: 0.96, blue: 0.98)
+                        AppColors.screenBackgroundTop,
+                        AppColors.screenBackgroundMiddle
                     ],
                     startPoint: .top,
                     endPoint: .bottom
@@ -87,28 +98,23 @@ struct UserListView: View {
         ZStack(alignment: .bottomLeading) {
             LinearGradient(
                 colors: [
-                    Color(red: 0.17, green: 0.36, blue: 0.88),
-                    Color(red: 0.15, green: 0.73, blue: 0.78)
+                    AppColors.primaryGradientStart,
+                    AppColors.primaryGradientEnd
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
 
-            Circle()
-                .fill(.white.opacity(0.12))
-                .frame(width: 180, height: 180)
-                .offset(x: 110, y: -70)
-
             VStack(alignment: .leading, spacing: 10) {
-                Text("User Explorer")
+                Text(AppStrings.userExplorerTitle)
                     .font(.system(size: 30, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
 
-                Text("Browse profiles, preview locations, and open detailed contact information.")
+                Text(AppStrings.userExplorerSubtitle)
                     .font(.subheadline)
                     .foregroundStyle(.white.opacity(0.9))
 
-                Label("\(vm.users.count) loaded", systemImage: "person.3.fill")
+                Label("\(vm.users.count) \(AppStrings.loadedUsersSuffix)", systemImage: "person.3.fill")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.white)
                     .padding(.horizontal, 14)
@@ -119,7 +125,7 @@ struct UserListView: View {
             .padding(24)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 190)
+        .frame(height: 150)
         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
         .shadow(color: .black.opacity(0.12), radius: 18, y: 10)
     }
@@ -128,7 +134,7 @@ struct UserListView: View {
         HStack(spacing: 12) {
             ProgressView()
 
-            Text("Loading more users...")
+            Text(AppStrings.loadingMoreUsers)
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }
@@ -144,67 +150,121 @@ private struct UserCardView: View {
     let user: User
 
     var body: some View {
-        HStack(spacing: 16) {
-            AsyncImage(url: URL(string: user.thumbnailURL)) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-            } placeholder: {
-                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            .frame(width: 72, height: 72)
-            .background(Color(red: 0.92, green: 0.95, blue: 1.0))
-            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 16) {
+                AsyncImage(url: URL(string: user.thumbnailURL)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(width: 72, height: 72)
+                .background(AppColors.cardBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
 
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(user.name)
-                            .font(.headline)
-                            .foregroundStyle(.primary)
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(user.name)
+                                .font(.headline)
+                                .foregroundStyle(.primary)
 
-                        Text("@\(user.username)")
+                            Text("@\(user.username)")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(AppColors.usernameText)
+                        }
+
+                        Spacer(minLength: 12)
+
+                        Text(user.gender)
                             .font(.caption.weight(.semibold))
-                            .foregroundStyle(Color(red: 0.15, green: 0.48, blue: 0.78))
+                            .foregroundStyle(AppColors.genderText)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(AppColors.genderBackground)
+                            .clipShape(Capsule())
+                        
+                        
+                        NavigationLink(value: UserRoute.detail(user)) {
+                            Image(systemName: "arrow.up.right")
+                                .font(.footnote.weight(.bold))
+                                .foregroundStyle(AppColors.actionIcon)
+                                .padding(10)
+                                .background(AppColors.actionBackground)
+                                .clipShape(Circle())
+                        }
+                        .buttonStyle(.plain)
                     }
 
-                    Spacer(minLength: 12)
+                    Text(user.email)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
 
-                    Text(user.gender)
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(Color(red: 0.11, green: 0.48, blue: 0.55))
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(Color(red: 0.86, green: 0.96, blue: 0.94))
-                        .clipShape(Capsule())
+                    HStack(spacing: 8) {
+                        Label(user.city, systemImage: "mappin.circle.fill")
+                        Text("•")
+                        Text("\(user.age) \(AppStrings.yearsShortSuffix)")
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
                 }
-
-                Text(user.email)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-
-                HStack(spacing: 8) {
-                    Label(user.city, systemImage: "mappin.circle.fill")
-                    Text("•")
-                    Text("\(user.age) yrs")
-                }
-                .font(.caption)
-                .foregroundStyle(.tertiary)
             }
 
-            Image(systemName: "arrow.up.right")
-                .font(.footnote.weight(.bold))
-                .foregroundStyle(Color(red: 0.16, green: 0.40, blue: 0.82))
-                .padding(10)
-                .background(Color(red: 0.91, green: 0.95, blue: 1.0))
-                .clipShape(Circle())
+            HStack(spacing: 10) {
+                cardActionLink(
+                    icon: "person.text.rectangle",
+                    title: AppStrings.profileActionTitle,
+                    route: .profile(user)
+                )
+
+                cardActionLink(
+                    icon: "phone.fill",
+                    title: AppStrings.contactActionTitle,
+                    route: .contact(user)
+                )
+
+                cardActionLink(
+                    icon: "map.fill",
+                    title: AppStrings.locationActionTitle,
+                    route: .location(user)
+                )
+
+//                Spacer(minLength: 8)
+
+                
+            }
         }
         .padding(18)
         .background(.white.opacity(0.92))
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .shadow(color: .black.opacity(0.06), radius: 14, y: 8)
     }
+
+    private func cardActionLink(icon: String, title: String, route: UserRoute) -> some View {
+        NavigationLink(value: route) {
+            Label(title, systemImage: icon)
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(AppColors.actionIcon)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(AppColors.actionBackground)
+                .clipShape(Capsule())
+        }
+        .buttonStyle(.plain)
+    }
 }
 
+#Preview("User Card") {
+    UserCardView(user: .previewUser)
+    .padding()
+    .background(
+        LinearGradient(
+            colors: [AppColors.screenBackgroundTop, AppColors.screenBackgroundMiddle],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    )
+}
